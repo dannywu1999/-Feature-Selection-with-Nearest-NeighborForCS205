@@ -2,7 +2,7 @@ import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import cross_val_score
 
-# 加载和处理数据集
+# upload and deal with dataset
 def load_dataset(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
@@ -41,7 +41,7 @@ def forward_selection(X, y):
 
 
 def evaluate(X, y, feature_set):
-    # 使用 K 近邻算法进行分类，进行交叉验证
+    # Using K near algorithom to class 
     knn = KNeighborsClassifier()
     X_selected = X[:, feature_set]
     scores = cross_val_score(knn, X_selected, y, cv=10, scoring='accuracy')
@@ -73,11 +73,11 @@ def backward_elimination(X, y):
 
 
 
-# 主程序
+
 def main():
     print("Welcome to Feature Selection Algorithm")
 
-    # 加载和处理数据集
+    # upload and deal with dataset
     file_name = input("Type in the name of the file to test: ")
     X, y = load_dataset(file_name)
 
@@ -87,14 +87,14 @@ def main():
 
     print("Starting feature search:")
     #"""
-    # 前向特征搜索
+    # forward_selection
     print("(1) Forward Selection")
     selected_features, best_accuracy = forward_selection(X, y)
     print(f"Best feature set: {selected_features}")
     print(f"Best accuracy: {best_accuracy}")
     #"""
 
-    # 后向消除
+    # backward_elimination
     print("(2) Backward Elimination")
     selected_features, best_accuracy = backward_elimination(X, y)
     print(f"Best feature set: {selected_features}")
